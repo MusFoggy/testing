@@ -1,5 +1,6 @@
 package ua.com.testing.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -10,10 +11,16 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 
+@Entity
+@Table(name = "attribute")
+
 public class Attribute {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
     private String description;
     private String unit;
-    private List<Attributehastest> attributehastestList;
+    @OneToMany(mappedBy = "attribute")
+    private List<Attributehastest> attributehastest;
 }

@@ -1,5 +1,6 @@
 package ua.com.testing.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
@@ -10,9 +11,15 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 
+@Entity
+@Table(name = "users")
+
 public class Users {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
-    private Set<Roles> rolesSet;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Roles> roles;
 }

@@ -1,5 +1,6 @@
 package ua.com.testing.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @Setter
@@ -8,8 +9,17 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 
+@Entity
+@Table(name = "attributehastest")
+
 public class Attributehastest {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @ManyToOne
+    @JoinColumn(name = "attribute_Id")
     private Attribute attribute;
-    private Test test;
+    @ManyToOne
+    @JoinColumn(name = "test_Id")
+    private Test test_2;
 }
