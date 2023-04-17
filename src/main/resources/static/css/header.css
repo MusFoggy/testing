@@ -1,0 +1,58 @@
+.header2 {
+    display: flex;
+    justify-content: center;
+    padding-top: 66px;
+    background: #F5F5FA;
+}
+.fb path:hover {
+    fill: #F0145A;
+}
+.fb1:hover {
+    fill: #F0145A;
+}
+.logobox {
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+}
+.nav{
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+}
+.menu {
+    padding-top: 12.5px;
+    padding-bottom: 12.5px;
+}
+.menu-box {
+    display: block;
+    margin-left: 0;
+    padding-top: 19px;
+}
+.menu-box-list {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+.menu a {
+    text-decoration: none;
+    margin: 0px 15px;
+}
+.phone {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: right;
+    text-decoration: none;
+    margin-right: 15px;
+}
+.top-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 15px;
+}
+header {
+    display: block;
+}
+

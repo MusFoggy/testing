@@ -1,0 +1,53 @@
+.container {
+    max-width: 1380px;
+    min-width: 375px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+.footer {
+    background: #F5F5FA;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.footerall {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    border-top: 2px solid #E6E6F0;
+}
+.fl2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.flb {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 21px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.flphone {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: right;
+    color: #46466E;
+    text-decoration: none;
+    padding: 0px 10px;
+}
+.mail {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #24A3FF;
+    text-decoration: none;
+}
+.frp1 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #B3B3BA;
+}
