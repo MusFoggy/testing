@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Авторизація</title>
     <link rel="stylesheet" href="../static/css/loginreg.css">
 </head>
         <div class="login-card">
