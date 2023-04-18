@@ -1,9 +1,9 @@
-<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <title>Авторизація</title>
     <link rel="stylesheet" href="../static/css/loginreg.css">
 </head>
+    <section class="section-card">
         <div class="login-card">
             <div class="card-header">
                 <div class="log">Авторизація</div>
@@ -25,3 +25,4 @@
                 </div>
             </form>
         </div>
+    </section>
