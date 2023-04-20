@@ -20,9 +20,12 @@
                 <div class="form-group">
                     <input value="Логін" type="submit">
                 </div>
+            </form>
+            <form action="/registration">
                 <div class="form-group">
-                    <a href="/registration" type="submit">Зареєструватися</a>
+                    <input href="/" value="Зареєструватися" type="submit">
                 </div>
             </form>
+
         </div>
     </section>
