@@ -20,6 +20,6 @@ public class Attributehastest {
     @JoinColumn(name = "attribute_Id")
     private Attribute attribute;
     @ManyToOne
-    @JoinColumn(name = "test_Id")
+    @JoinColumn(name = "tests_Id")
     private Test test_2;
 }

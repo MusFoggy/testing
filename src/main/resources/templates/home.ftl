@@ -15,7 +15,15 @@
 <section class="container">
     <h1>${hello}</h1>
     <a href="/category">Go</a>
-    <a href="/login">Go login</a>
+    <div>
+        <#if (session.getAttribute("user"))??>
+            <span>Привіт, ${(session.getAttribute("user")).username}!</span>
+            <a href="/logout">Вийти</a>
+        <#else>
+            <a href="/login">Увійти</a>
+        </#if>
+    </div>
+
 </section>
 <section class="container">
     <div class="item-alls">

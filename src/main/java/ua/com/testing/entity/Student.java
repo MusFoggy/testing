@@ -14,7 +14,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "student")
-
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +22,15 @@ public class Student {
     private String surname;
     private String email;
     @OneToOne
-    @MapKey
     @MapsId
     @JoinColumn(name = "Id")
     private Users users;
-    @OneToMany(mappedBy = "student")
-    private List<Order> orderList;
+
+    public Student(String name, String surname, String email, Users users) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.users = users;
+    }
 }
+

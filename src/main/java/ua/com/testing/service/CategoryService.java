@@ -1,6 +1,6 @@
 package ua.com.testing.service;
 
-import jakarta.persistence.Cacheable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.com.testing.entity.Category;

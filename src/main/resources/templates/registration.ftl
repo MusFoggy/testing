@@ -1,29 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Авторизація</title>
+    <title>Реєстрація</title>
     <link rel="stylesheet" href="../static/css/loginreg.css">
 </head>
+<body>
 <section class="section-card">
     <div class="login-card">
         <div class="card-header">
-            <div class="log">Авторизація</div>
+            <div class="log">Реєстрація</div>
         </div>
-        <form>
+        <form action="/registration" method="post">
             <div class="form-group">
                 <label for="username">Ім'я користувача:</label>
-                <input required="" name="username" id="username" type="text">
-            </div>
-            <div class="form-group">
-                <label for="email">Електронна пошта:</label>
-                <input required="" name="email" id="email" type="email">
+                <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="password">Пароль:</label>
-                <input required="" name="password" id="password" type="password">
+                <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <input href="/" value="Зареєструватися" type="submit">
+                <label for="name">Ім'я:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="surname">Прізвище:</label>
+                <input type="text" id="surname" name="surname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Електронна пошта:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Зареєструватися</button>
             </div>
         </form>
+        <!-- Display error message if present -->
+        <#if error??>
+            <p>${error}</p>
+        </#if>
     </div>
 </section>
+</body>
+</html>
