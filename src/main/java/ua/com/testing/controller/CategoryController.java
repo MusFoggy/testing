@@ -3,8 +3,8 @@ package ua.com.testing.controller;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ua.com.testing.entity.Category;
 import ua.com.testing.service.CategoryService;
 import ua.com.testing.service.SearchService;
@@ -38,5 +38,31 @@ public class CategoryController {
         model.addAttribute("showSearchResults", true);
         return "category";
     }
+    @PostMapping("/category/add")
+    public String addCategory(@ModelAttribute("category") Category category) {
+        categoryService.addCategory(category);
+        return "redirect:/admin";
+    }
 
+    @PostMapping("/category/update")
+    public String updateCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttributes) {
+        String result = categoryService.updateCategory(category);
+        redirectAttributes.addFlashAttribute("updateResult", result);
+        return "redirect:/admin";
+    }
+
+
+    @PostMapping("/category/delete")
+    public String deleteCategory(@RequestParam("name") String name, RedirectAttributes redirectAttributes) {
+        String result = categoryService.deleteCategory(name);
+        redirectAttributes.addFlashAttribute("deleteResult", result);
+        return "redirect:/admin";
+    }
+
+
+
+    @GetMapping("/admin")
+    public String getAdminPanel() {
+        return "admin";
+    }
 }
