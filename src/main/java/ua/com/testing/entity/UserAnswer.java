@@ -2,6 +2,8 @@ package ua.com.testing.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -25,6 +27,7 @@ public class UserAnswer {
 
     @ManyToOne
     @JoinColumn(name = "user_answers_question_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Question question;
 
     @Column(name = "answer")

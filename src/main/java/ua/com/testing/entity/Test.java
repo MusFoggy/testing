@@ -26,12 +26,12 @@ public class Test {
     @JoinColumn(name = "category_Id")
     private Category category;
 
-    @OneToMany(mappedBy = "test")
+    @OneToMany(mappedBy = "test", cascade = CascadeType.REMOVE)
     private List<Testhasquestion> testhasquestionList;
 
-
-    @OneToMany(mappedBy = "test")
+    @OneToMany(mappedBy = "test", cascade = CascadeType.REMOVE)
     private List<Question> questions;
+
 
     @Override
     public String toString() {

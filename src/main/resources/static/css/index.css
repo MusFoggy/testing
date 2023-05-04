@@ -1,0 +1,33 @@
+.container{
+    background: #7fe12f;
+}
+
+.row{
+    background: #75af9c;
+    height: 300px;
+}
+
+.row{
+    text-align: center;
+    height: 50px;
+}
+
+.row div:nth-child(old){
+    background: #1cb784;
+}
+
+.row div:nth-child(even){
+    background: #1ca0b7;
+}
+
+#name{
+    background: #1ca0b7;
+}
+
+a {
+    border: 1px #3c5028;
+}
+
+div {
+    border: 1px #3c5028;
+}
