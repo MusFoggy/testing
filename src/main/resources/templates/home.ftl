@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../static/css/home.css">
-    <link rel="stylesheet" href="../static/css/all.css.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/all.css.css">
+
 </head>
 <body class="body">
 <div class="row align-items-end">
@@ -13,17 +14,7 @@
     </div>
 </div>
 <section class="container">
-    <h1>${hello}</h1>
-    <a href="/category">Go</a>
-    <div>
-        <#if (session.getAttribute("user"))??>
-            <span>Привіт, ${(session.getAttribute("user")).username}!</span>
-            <a href="/logout">Вийти</a>
-        <#else>
-            <a href="/login">Увійти</a>
-        </#if>
-    </div>
-
+    <p class="p23">September 29</p>
 </section>
 <section class="container">
     <div class="item-alls">

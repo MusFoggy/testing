@@ -1,0 +1,174 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#header {
+    background-color: #333333;
+    color: #FFFFFF;
+    padding: 10px;
+    border-bottom: 1px solid #444444;
+    border-radius: 0 0 10px 10px;
+}
+
+#leftmenu {
+    width: 200px;
+    background-color: #4d4d4d;
+    padding: 10px;
+    border-right: 1px solid #444444;
+    border-radius: 0 10px 10px 0;
+    min-height: 525px;
+}
+
+#leftmenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#leftmenu li {
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+#leftmenu a {
+    text-decoration: none;
+    color: #CCCCCC;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+#leftmenu a:hover {
+    color: #FFFFFF;
+    background-color: #666666;
+}
+
+#content {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: #F8F9FA;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    margin: 0 0px 0px 20px;
+}
+
+#main-container {
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#footer {
+background-color: #333333;
+color: #FFFFFF;
+text-align: center;
+padding: 10px;
+border-top: 1px solid #444444;
+border-radius: 10px 10px 0 0;
+}
+
+/* Styling for forms */
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+}
+
+form button[type="submit"] {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Alert message */
+.alert {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+h1 {
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form textarea,
+form select,
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+}
+
+form #add-question {
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#questions-container {
+    margin-top: 20px;
+}
+
+.question-field {
+    margin-bottom: 10px;
+}
+

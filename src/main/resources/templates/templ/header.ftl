@@ -26,14 +26,22 @@
             <nav class="menu">
                 <div class="menu-box">
                     <ul class="menu-box-list">
-                        <li><a href="about.html">про нас</a></li>
-                        <li><a href="#">послуги</a></li>
-                        <li><a href="#">команда</a></li>
-                        <li><a href="#">публікацій</a></li>
-                        <li><a href="#">контакт</a></li>
+                        <li><a href="/category">category</a></li>
+                        <li><a href="/admin">admin</a></li>
+                        <div>
+                                <#if principal??>
+                                    <span>Привіт, ${principal.name}!</span>
+                                    <a href="/logout">Вийти</a>
+                                <#else>
+                                    <a href="/login">Увійти</a>
+                                </#if>
+                        </div>
                     </ul>
                 </div>
             </nav>
+            <section class="container">
+                <h1>${hello}</h1>
+            </section>
         </div>
     </div>
 </header>

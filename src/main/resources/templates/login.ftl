@@ -18,7 +18,7 @@
                 <input required="" name="password" id="password" type="password">
             </div>
             <div class="form-group">
-                <input value="Логін" type="submit">
+                <input value="Увійти" type="submit">
             </div>
         </form>
         <form action="/registration">
