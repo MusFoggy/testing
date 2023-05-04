@@ -10,17 +10,17 @@ import lombok.*;
 @ToString
 
 @Entity
-@Table(name = "testhasorder")
+@Table(name = "testhasquestion")
 
-public class Testhasorder {
+public class Testhasquestion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @ManyToOne
-    @JoinColumn(name = "test_Id")
+    @JoinColumn(name = "test_Id_1")
     private Test test;
     @ManyToOne
-    @JoinColumn(name = "order_Id")
-    private Order order;
+    @JoinColumn(name = "question_Id")
+    private Question question;
     private int quantity;
 }

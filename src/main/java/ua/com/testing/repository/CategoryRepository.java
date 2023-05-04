@@ -11,5 +11,6 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     List<Category> findByNameStartingWithIgnoreCase(String query);
+    List<Category> findByNameContainingIgnoreCase(String name);
     Category findByName(String name);
 }

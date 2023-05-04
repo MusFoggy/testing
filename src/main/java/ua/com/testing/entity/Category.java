@@ -9,11 +9,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-
 @Entity
 @Table(name = "category")
-
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +19,11 @@ public class Category {
     private String description;
     private String image;
     @OneToMany(mappedBy = "category")
-    private List <Test> testList;
+    private List<Test> testList;
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
+

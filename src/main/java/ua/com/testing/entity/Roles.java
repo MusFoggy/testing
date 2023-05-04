@@ -2,7 +2,10 @@ package ua.com.testing.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Setter
@@ -13,7 +16,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "fix_role")
-public class Roles {
+public class Roles implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,5 +25,10 @@ public class Roles {
     @ToString.Exclude
     @ManyToMany(mappedBy = "roles")
     private Set<Users> usersSet;
+
+    @Override
+    public String getAuthority() {
+        return getName();
+    }
 }
 
