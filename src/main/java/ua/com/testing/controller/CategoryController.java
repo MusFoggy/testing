@@ -17,6 +17,7 @@ public class CategoryController {
 
     @Autowired
     public CategoryController(CategoryService categoryService) {
+
         this.categoryService = categoryService;
     }
 
@@ -43,7 +44,6 @@ public class CategoryController {
         categoryService.addCategory(category);
         return "redirect:/admin";
     }
-
     @PostMapping("/category/update")
     public String updateCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttributes) {
         String result = categoryService.updateCategory(category);
@@ -57,12 +57,5 @@ public class CategoryController {
         String result = categoryService.deleteCategory(name);
         redirectAttributes.addFlashAttribute("deleteResult", result);
         return "redirect:/admin";
-    }
-
-
-
-    @GetMapping("/admin")
-    public String getAdminPanel() {
-        return "admin";
     }
 }

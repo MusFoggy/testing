@@ -1,25 +1,26 @@
 package ua.com.testing.service;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import ua.com.testing.entity.Roles;
 import ua.com.testing.entity.Student;
 import ua.com.testing.entity.Users;
 import ua.com.testing.repository.RolesRepository;
 import ua.com.testing.repository.StudentRepository;
 import ua.com.testing.repository.UsersRepository;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UsersRepository usersRepository;
     private final RolesRepository rolesRepository;
@@ -43,13 +44,13 @@ public class UserService {
         return usersRepository.findByUsername(username).isPresent();
     }
 
-    public Users registerNewUser(String username, String password, String name, String surname, String email) {
+    public Users registerNewUser(String username, String password, String name, String surname, String email, PasswordEncoder passwordEncoder) {
         Users user = new Users();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
 
         Set<Roles> roles = new HashSet<>();
-        roles.add(rolesRepository.findByName("Student").orElseThrow(() -> new RuntimeException("Роль не знайдено")));
+        roles.add(rolesRepository.findByName("ROLE_Student").orElseThrow(() -> new RuntimeException("Роль не знайдено")));
         user.setRoles(roles);
 
         Users savedUser = usersRepository.save(user);
@@ -64,5 +65,17 @@ public class UserService {
 
         return savedUser;
     }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Users user = usersRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return user;
+    }
+    public Optional<Users> findByUsername(String username) {
+        return usersRepository.findByUsername(username);
+    }
+
 }
 

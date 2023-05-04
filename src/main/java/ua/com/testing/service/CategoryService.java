@@ -2,30 +2,34 @@ package ua.com.testing.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
+import ua.com.testing.entity.Test;
 import org.springframework.stereotype.Service;
 import ua.com.testing.entity.Category;
 import ua.com.testing.repository.CategoryRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final TestService testService;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository, TestService testService) {
         this.categoryRepository = categoryRepository;
+        this.testService = testService;
     }
     public List<Category> getAllCategory(){
+
         return categoryRepository.findAll();
     }
     public void addCategory(Category category) {
         categoryRepository.save(category);
     }
-
+    public Category getCategoryById(Long id) {
+        return categoryRepository.findById(id).orElse(null);
+    }
     public String updateCategory(Category category) {
         Category existingCategory = categoryRepository.findByName(category.getName());
         if (existingCategory != null) {
@@ -38,24 +42,21 @@ public class CategoryService {
         }
     }
 
-
-    // ...
-
     public String deleteCategory(String name) {
-        try {
-            Category category = categoryRepository.findByName(name);
-            if (category != null) {
-                categoryRepository.delete(category);
-                return "Категорія з іменем " + name + " успішно видалена!";
-            } else {
-                return "Категорія з іменем " + name + " не знайдена!";
+        Category category = categoryRepository.findByName(name);
+
+        if (category != null) {
+            List<Test> tests = testService.getAllTestsByCategory(category);
+
+            for (Test test : tests) {
+                test.setCategory(null);
+                testService.updateTest(test.getId(), test);
             }
-        } catch (EmptyResultDataAccessException e) {
-            return "Помилка при видаленні категорії з іменем " + name + "!";
+
+            categoryRepository.delete(category);
+            return "Категорія успішно видалена.";
+        } else {
+            return "Категорія не знайдена.";
         }
     }
-
-
-
-
 }

@@ -10,15 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.com.testing.entity.Users;
 import ua.com.testing.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/login")
@@ -34,7 +37,6 @@ public class UserController {
             return "redirect:/login";
         }
     }
-
 
     @GetMapping("/login")
     public String getLoginPage() {
@@ -54,16 +56,19 @@ public class UserController {
             return "registration";
         }
 
-        userService.registerNewUser(username, password, name, surname, email);
+        userService.registerNewUser(username, password, name, surname, email, passwordEncoder);
 
         return "redirect:/login";
     }
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
         return "redirect:/login";
     }
+
 }
+
 
 
