@@ -17,6 +17,7 @@ public class SearchService {
         this.categoryRepository = categoryRepository;
     }
 
+    // Метод для пошуку категорій за певним запитом
     public List<Category> search(String query) {
         return categoryRepository.findByNameStartingWithIgnoreCase(query);
     }

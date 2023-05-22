@@ -11,6 +11,8 @@
     <#assign currentTest = "">
     <#list userAnswers as answer>
         <#if answer.user.username != currentUser || answer.test.name != currentTest>
+            <#assign currentUser = answer.user.username>
+            <#assign currentTest = answer.test.name>
             <#if currentUser??>
                 <form method="post" action="/tests/deleteUserAnswers">
                     <input type="hidden" name="username" value="${currentUser}">
@@ -19,8 +21,6 @@
                 </form>
                 </div>
             </#if>
-            <#assign currentUser = answer.user.username>
-            <#assign currentTest = answer.test.name>
             <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">
             <p>Користувач: ${currentUser}</p>
             <p>Тест: ${currentTest}</p>

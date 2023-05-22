@@ -1,10 +1,13 @@
+// Пакет, в якому знаходиться клас
 package ua.com.testing.entity;
 
+// Імпорт необхідних класів
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+// Анотації для автоматичного генерації коду
 @Getter
 @Setter
 @NoArgsConstructor

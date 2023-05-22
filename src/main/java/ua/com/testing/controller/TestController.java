@@ -14,15 +14,14 @@ import ua.com.testing.service.*;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Controller
 @RequestMapping("/tests")
 public class TestController {
+
     @Autowired
     private CategoryService categoryService;
     @Autowired
@@ -32,8 +31,7 @@ public class TestController {
     @Autowired
     private UserAnswerService userAnswerService;
 
-
-
+    // Отримати всі тести
     @GetMapping
     public String getAllTests(Model model) {
         List<Test> tests = testService.getAllTests();
@@ -41,8 +39,7 @@ public class TestController {
         return "/admin/tests";
     }
 
-
-
+    // Отримати деталі тесту за ідентифікатором
     @GetMapping("/{id}/details")
     public String getTestById(@PathVariable Long id, Model model) {
         Test test = testService.getTestById(id);
@@ -50,13 +47,13 @@ public class TestController {
         return "/admin/testDetails";
     }
 
+    // Створити новий тест
     @PostMapping
     public String createTest(@ModelAttribute Test test, @RequestParam Long category, @RequestParam String questions) {
         Category selectedCategory = categoryService.getCategoryById(category);
         test.setCategory(selectedCategory);
 
         List<Question> questionList = Arrays.stream(questions.split("\\r?\\n"))
-
                 .map(questionText -> new Question(questionText.trim(), test))
                 .collect(Collectors.toList());
 
@@ -64,9 +61,7 @@ public class TestController {
         return "redirect:/admin";
     }
 
-
-
-
+    // Редагувати тест за ідентифікатором
     @GetMapping("/{id}/edit")
     public String editTest(@PathVariable Long id, Model model) {
         Test test = testService.getTestById(id);
@@ -79,6 +74,7 @@ public class TestController {
         return "/admin/testEdit";
     }
 
+    // Оновити тест
     @PostMapping("/{id}/update")
     public String updateTest(@PathVariable("id") Long id, @ModelAttribute Test test, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -88,15 +84,14 @@ public class TestController {
         return "redirect:/admin";
     }
 
-
-
-
+    // Видалити тест за ідентифікатором
     @PostMapping("/{id}/delete")
     public String deleteById(@PathVariable Long id) {
         testService.deleteById(id);
         return "redirect:/admin";
     }
 
+    // Отримати форму для створення нового тесту
     @GetMapping("/new")
     public String createTestForm(Model model) {
         model.addAttribute("test", new Test());
@@ -105,6 +100,7 @@ public class TestController {
         return "/admin/createTest";
     }
 
+    // Почати тест за ідентифікатором
     @GetMapping("/{id}/start")
     public String startTest(@PathVariable Long id, Model model) {
         Test test = testService.getTestById(id);
@@ -113,6 +109,8 @@ public class TestController {
         model.addAttribute("questions", questions);
         return "testPage";
     }
+
+    // Отримати тести за категорією
     @GetMapping("/category/{id}")
     public String getTestsByCategory(@PathVariable Long id, Model model) {
         Category category = categoryService.getCategoryById(id);
@@ -121,6 +119,8 @@ public class TestController {
         model.addAttribute("tests", tests);
         return "templ/testsByCategory";
     }
+
+    // Завершити тест та зберегти відповіді користувача
     @PostMapping("/{id}/submit")
     public String submitTest(@PathVariable Long id, @RequestParam("answers[]") List<String> answers) {
         Test test = testService.getTestById(id);
@@ -138,7 +138,7 @@ public class TestController {
         return "redirect:/category";
     }
 
-
+    // Показати результати тестів
     @GetMapping("/testResults")
     public String showTestResults(Model model) {
         List<UserAnswer> userAnswers = userAnswerService.getAllUserAnswers();
@@ -146,6 +146,7 @@ public class TestController {
         return "/admin/testResults";
     }
 
+    // Видалити відповіді користувача
     @PostMapping("/deleteUserAnswers")
     public String deleteUserAnswers(@RequestParam("username") String username,
                                     @RequestParam("testName") String testName) {

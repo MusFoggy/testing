@@ -19,43 +19,44 @@ import java.util.List;
 @RequestMapping("/questions")
 public class QuestionController {
     @Autowired
-    private TestService testService;
+    private TestService testService;  // Сервіс для роботи з тестами
     @Autowired
-    private QuestionService questionService;
+    private QuestionService questionService;  // Сервіс для роботи з питаннями
     @Autowired
-    private UserService userService;
+    private UserService userService;  // Сервіс для роботи з користувачами
     @Autowired
-    private UserAnswerService userAnswerService;
+    private UserAnswerService userAnswerService;  // Сервіс для роботи з відповідями користувачів
 
     @GetMapping
     public String getAllQuestions(Model model) {
-        List<Question> questions = questionService.getAllQuestions();
+        List<Question> questions = questionService.getAllQuestions();  // Отримати список всіх питань
         model.addAttribute("questions", questions);
-        return "questions";
+        return "questions";  // Повернути шаблон "questions"
     }
 
     @GetMapping("/{id}")
     public String getQuestionById(@PathVariable Long id, Model model) {
-        Question question = questionService.getQuestionById(id);
+        Question question = questionService.getQuestionById(id);  // Отримати питання за ідентифікатором
         model.addAttribute("question", question);
-        return "questionDetails";
+        return "questionDetails";  // Повернути шаблон "questionDetails"
     }
 
     @PostMapping
     public String createQuestion(@ModelAttribute Question question) {
-        questionService.createQuestion(question);
-        return "redirect:/questions";
+        questionService.createQuestion(question);  // Створити нове питання
+        return "redirect:/questions";  // Перенаправити на сторінку зі списком питань
     }
 
     @PutMapping("/{id}")
     public String updateQuestion(@PathVariable Long id, @ModelAttribute Question question) {
-        questionService.updateQuestion(id, question);
-        return "redirect:/questions/" + id;
+        questionService.updateQuestion(id, question);  // Оновити питання
+        return "redirect:/questions/" + id;  // Перенаправити на сторінку з деталями питання
     }
 
     @DeleteMapping("/{id}")
     public String deleteQuestion(@PathVariable Long id) {
-        questionService.deleteQuestion(id);
-        return "redirect:/questions";
+        questionService.deleteQuestion(id);  // Видалити питання
+        return "redirect:/questions";  // Перенаправити на сторінку зі списком питань
     }
 }
+

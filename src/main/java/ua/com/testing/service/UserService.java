@@ -13,11 +13,9 @@ import ua.com.testing.repository.RolesRepository;
 import ua.com.testing.repository.StudentRepository;
 import ua.com.testing.repository.UsersRepository;
 
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
 
 @Service
 public class UserService implements UserDetailsService {
@@ -32,18 +30,23 @@ public class UserService implements UserDetailsService {
         this.rolesRepository = rolesRepository;
         this.studentRepository = studentRepository;
     }
+
+    // Аутентифікація користувача за ім'ям користувача і паролем
     public boolean authenticate(String username, String password) {
         return findByUsernameAndPassword(username, password).isPresent();
     }
 
+    // Пошук користувача за ім'ям користувача і паролем
     public Optional<Users> findByUsernameAndPassword(String username, String password) {
         return usersRepository.findByUsernameAndPassword(username, password);
     }
 
+    // Перевірка, чи існує користувач з заданим ім'ям користувача
     public boolean userExists(String username) {
         return usersRepository.findByUsername(username).isPresent();
     }
 
+    // Реєстрація нового користувача
     public Users registerNewUser(String username, String password, String name, String surname, String email, PasswordEncoder passwordEncoder) {
         Users user = new Users();
         user.setUsername(username);
@@ -66,16 +69,17 @@ public class UserService implements UserDetailsService {
         return savedUser;
     }
 
-
+    // Завантаження користувача за ім'ям користувача
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = usersRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return user;
     }
+
+    // Пошук користувача за ім'ям користувача
     public Optional<Users> findByUsername(String username) {
         return usersRepository.findByUsername(username);
     }
-
 }
 

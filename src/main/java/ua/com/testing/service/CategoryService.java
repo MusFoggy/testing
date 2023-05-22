@@ -20,16 +20,23 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
         this.testService = testService;
     }
-    public List<Category> getAllCategory(){
 
+    // отримує всі категорії
+    public List<Category> getAllCategory(){
         return categoryRepository.findAll();
     }
+
+    // додає нову категорію
     public void addCategory(Category category) {
         categoryRepository.save(category);
     }
+
+    // отримує категорію за id
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id).orElse(null);
     }
+
+    // оновлює категорію
     public String updateCategory(Category category) {
         Category existingCategory = categoryRepository.findByName(category.getName());
         if (existingCategory != null) {
@@ -42,12 +49,14 @@ public class CategoryService {
         }
     }
 
+    // видаляє категорію
     public String deleteCategory(String name) {
         Category category = categoryRepository.findByName(name);
 
         if (category != null) {
             List<Test> tests = testService.getAllTestsByCategory(category);
 
+            // зберігаємо зміни у тестах, які належали даній категорії
             for (Test test : tests) {
                 test.setCategory(null);
                 testService.updateTest(test.getId(), test);
@@ -60,3 +69,4 @@ public class CategoryService {
         }
     }
 }
+

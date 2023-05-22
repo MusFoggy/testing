@@ -28,7 +28,9 @@ public class UserController {
     public String login(@RequestParam(name = "username") String username,
                         @RequestParam(name = "password") String password,
                         HttpServletRequest request) {
+        // Перевірка аутентифікації користувача
         if (userService.authenticate(username, password)) {
+            // Отримання користувача за ім'ям та паролем
             Users user = userService.findByUsernameAndPassword(username, password).orElse(null);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
@@ -51,11 +53,13 @@ public class UserController {
     @PostMapping("/registration")
     public String addUser(@RequestParam String username, @RequestParam String password,
                           @RequestParam String name, @RequestParam String surname, @RequestParam String email, Model model) {
+        // Перевірка наявності користувача
         if (userService.userExists(username)) {
             model.addAttribute("message", "User exists!");
             return "registration";
         }
 
+        // Реєстрація нового користувача
         userService.registerNewUser(username, password, name, surname, email, passwordEncoder);
 
         return "redirect:/login";
@@ -63,12 +67,12 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
+        // Видалення сесії користувача
         HttpSession session = request.getSession();
         session.invalidate();
         return "redirect:/login";
     }
 
 }
-
 
 

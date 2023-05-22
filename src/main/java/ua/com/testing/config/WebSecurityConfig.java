@@ -22,11 +22,13 @@ public class WebSecurityConfig {
         this.userService = userService;
     }
 
+    // Конфігурація шифрування паролів
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // Конфігурація безпеки
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationManager(
@@ -39,11 +41,11 @@ public class WebSecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeRequests((authorize) -> authorize
-                        .requestMatchers("/static/**").permitAll()
-                        .requestMatchers("/login", "/registration").permitAll()
-                        .requestMatchers("/category").authenticated()
-                        .requestMatchers("/admin").hasRole("Admin")
-                        .anyRequest().permitAll()
+                        .requestMatchers("/static/**").permitAll()  // Дозволити доступ до статичних ресурсів
+                        .requestMatchers("/login", "/registration").permitAll()  // Дозволити доступ до сторінок логіну та реєстрації
+                        .requestMatchers("/category").authenticated()  // Вимагати аутентифікацію для сторінки категорій
+                        .requestMatchers("/admin").hasRole("Admin")  // Вимагати роль "Admin" для сторінки адміністратора
+                        .anyRequest().permitAll()  // Дозволити доступ до всіх інших сторінок
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
@@ -63,4 +65,5 @@ public class WebSecurityConfig {
         return http.build();
     }
 }
+
 
