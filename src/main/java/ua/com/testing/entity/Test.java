@@ -45,6 +45,7 @@ public class Test {
 
     // Анотація, що вказує на зв'язок один-до-багатьох з сутністю Question через поле test
     // Автоматичне видалення пов'язаних об'єктів здійснюється засобами каскадного видалення (CascadeType.REMOVE)
+    @OneToMany(mappedBy = "test", cascade = CascadeType.REMOVE)
     private List<Question> questions;
 
     // Перевизначений метод toString() для отримання рядкового представлення об'єкту Test
